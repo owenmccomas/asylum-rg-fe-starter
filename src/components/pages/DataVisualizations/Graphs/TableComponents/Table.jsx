@@ -48,18 +48,17 @@ function Table(props) {
         })}
       </div>
       <div className="rows-container">
-        {rows.map((row, idx) => {
-          return (
-            <TableRow
-              key={idx}
-              row={row}
-              rowId={idx}
-              tableWidth={tableWidth}
-              rowHeight={rowHeight}
-              columns={columns}
-            />
-          );
-        })}
+        {rows.map((row, idx) => (
+          <TableRow
+            key={idx}
+            row={row}
+            rowId={idx}
+            tableWidth={tableWidth}
+            rowHeight={rowHeight}
+            columns={columns}
+          />
+        ))}
+        ;
       </div>
     </div>
   );
