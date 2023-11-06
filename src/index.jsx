@@ -22,6 +22,10 @@ import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import reducer from './state/reducers';
 import { colors } from './styles/data_vis_colors';
+import { Auth0ProviderWithHistory } from './auth/auth0-provider-with-history';
+import { BrowserRouter } from 'react-router-dom/cjs/react-router-dom';
+import NavBar from './components/nav-bar';
+import Profile from './components/profile';
 
 const { primary_accent_color } = colors;
 
@@ -30,7 +34,11 @@ ReactDOM.render(
   <Router>
     <Provider store={store}>
       <React.StrictMode>
-        <App />
+        <BrowserRouter>
+          <Auth0ProviderWithHistory>
+            <App />
+          </Auth0ProviderWithHistory>
+        </BrowserRouter>
       </React.StrictMode>
     </Provider>
   </Router>,
@@ -51,9 +59,11 @@ export function App() {
       >
         <HeaderContent />
       </Header>
+      <NavBar />
       <Switch>
         <Route path="/" exact component={LandingPage} />
         <Route path="/graphs" component={GraphsContainer} />
+        <Route path="/profile" component={Profile} />
         <Route component={NotFoundPage} />
       </Switch>
       <Footer
